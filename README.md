@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  <img src=".github/Preview.jpg" width="100%" />
+  <img src=".github/Preview.JPG" width="100%" />
 </p>
 
 ## 💻 Projeto
@@ -29,5 +29,5 @@ Faça um clone desse repositório e acesse o diretório.
 $ yarn
 
 # Executanto aplicação
-$ yarn next
+$ yarn dev
 ```
