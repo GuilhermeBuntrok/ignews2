@@ -29,5 +29,5 @@ Faça um clone desse repositório e acesse o diretório.
 $ yarn
 
 # Executanto aplicação
-$ yarn next
+$ yarn dev
 ```
