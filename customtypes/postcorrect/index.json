@@ -1,0 +1,9 @@
+{
+  "id": "postcorrect",
+  "label": "postcorrect",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {}
+  }
+}
