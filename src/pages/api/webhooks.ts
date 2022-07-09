@@ -27,6 +27,7 @@ const relevantEvents = new Set([
   'customer.subscription.deleted',
 ])
 
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
@@ -37,18 +38,19 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     try {
       event = stripe.webhooks.constructEvent(buf, secret!, process.env.STRIPE_WEBHOOK_SECRET!)
-    } catch (error) {
-      return res.status(400).send(`Webhook error:${error.message}`)
+    } catch (err) {
+      return res.status(400).send(`Webhook error:${err.message}`)
     }
 
 
-    const type = event.type;
+    const { type } = event
 
     if (relevantEvents.has(type)) {
       try {
         switch (type) {
           case 'customer.subscription.updated':
           case 'customer.subscription.deleted':
+
             const subscription = event.data.object as Stripe.Subscription
 
             await saveSubscription(
@@ -59,6 +61,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
             break;
           case 'checkout.session.completed':
+
             const checkoutSession = event.data.object as Stripe.Checkout.Session
 
             await saveSubscription(
