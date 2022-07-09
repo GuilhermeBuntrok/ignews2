@@ -5,9 +5,7 @@ import { api } from '../../services/api';
 import { getStripeJs } from '../../services/stripe-js';
 import styles from './styles.module.scss';
 
-interface errorProps {
-  error: string;
-}
+
 
 interface SubscribeButtonProps {
   priceId: string;
