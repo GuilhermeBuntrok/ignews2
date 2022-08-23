@@ -3,13 +3,13 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { SubscribeButton } from '../components/SubscribeButton'
 import styles from './home.module.scss'
-import { GetServerSideProps } from 'next'
+import { GetServerSideProps, GetStaticProps } from 'next'
 import { stripe } from '../services/stripe'
 
 interface HomeProps {
   product: {
     priceId: string,
-    amount: number;
+    amount: string;
   }
 }
 
@@ -27,7 +27,7 @@ export default function Home({ product }: HomeProps) {
             Get acess to all the publications <br />
             <span>for {product.amount} month</span>
           </p>
-          <SubscribeButton priceId={product.priceId} />
+          <SubscribeButton />
         </section>
         <Image
           src='/images/avatar.svg'
@@ -42,7 +42,7 @@ export default function Home({ product }: HomeProps) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const price = await stripe.prices.retrieve('price_1L49EpDmoTd01rU7LAwknpxt',
   );
 

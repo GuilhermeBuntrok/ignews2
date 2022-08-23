@@ -46,8 +46,6 @@ export async function getServerSideProps() {
 
   const response = await prismic.getByType('publi', {
     pageSize: 100,
-
-
   });
 
   //console.log(JSON.stringify(response, null, 2));
